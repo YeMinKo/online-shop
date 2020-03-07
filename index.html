@@ -7,35 +7,10 @@
 </head>
 <body>
 	<div id="app">
-		<div class="product">
-			<div class="product-image">
-				<img :src="image"/>
-			</div>
-			<div class="product-info">
-				<h1>{{ title }}</h1>
-				<p v-if="inStock">In Stock</p>
-				<p v-else>Out of stock</p>
-
-				<ul>
-					<li v-for="detail in details">{{detail}}</li>
-				</ul>
-
-				<div class="color-box" v-for="(varient,index) in varients" 
-					:key="varient.varientId" 
-					:style="{backgroundColor: varient.varientColor}"
-					@mouseOver="updateProduct(index)">
-				</div>
-
-				<button v-on:click="addToCart" 
-					:class="{disabledButton: !inStock}" 
-					:disabled="!inStock">Add to cart</button>
-
-				<div class="cart">
-					<p>Cart({{cart}})</p>
-				</div>
-				
-			</div>
+		<div class="cart">
+			<p>Cart({{ cart.length }})</p>
 		</div>
+		<product :premium="premium" @add-to-cart="updateCart"></product>
 	</div>
 
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
